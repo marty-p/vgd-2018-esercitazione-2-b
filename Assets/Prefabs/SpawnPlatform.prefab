@@ -125,10 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1606b243524604db6766b3786e06ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTimeMax: 3
+  respawnTimeMax: 1
   enemyPrefab: {fileID: 1356193661385916, guid: 1f83fceee18b12a4a88fe66a6fc4e77e,
     type: 2}
   spawnPosition: {fileID: 4664328594535520}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!136 &136674737107152282
 CapsuleCollider:
   m_ObjectHideFlags: 1

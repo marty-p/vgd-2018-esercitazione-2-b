@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23100556606549666}
   - component: {fileID: 135865329227781314}
   - component: {fileID: 114557759742631016}
+  - component: {fileID: 114761981870180922}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,11 +204,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13506d55ed21eb243bd2354b128d6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1876598120437794, guid: deae8d5dfd072a945baeb9fb6d504d70,
-    type: 2}
-  bulletSpawn: {fileID: 4108320116632044}
   cooldownTime: 0.5
+  rcLength: 10
   speedMove: 1
+--- !u!114 &114761981870180922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321044215582152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98802acbfe2c4340920c5d144c382b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!135 &135865329227781314
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
-    public float cooldownTime = 0.5f;
+    // raycast
+    public float cooldownTime = 1f;
     private float nextFire;
+    public float rcLength = 10f;
     // movement
     public float speedMove = 1.0f;
 
@@ -28,7 +28,14 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + cooldownTime;
-            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            // shoot rc
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, transform.forward * rcLength, Color.red);
+            if (Physics.Raycast(transform.position, transform.forward, out hit, rcLength))
+            {
+                if (hit.collider.gameObject.CompareTag("Enemy"))
+                    Destroy(hit.collider.gameObject);
+            }
         }
     }
 }

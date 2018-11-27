@@ -4,40 +4,34 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-    // movement
-    public float moveSpeed = 5.0f;
-    public int moveFactor = 3;
-    // raycast
-    public float rcLength = 10f;
-    public float rcTimeMax = 2.0f;
-    private float rcTime;
+    // bullet
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
+    public float cooldownTimeMax = 1f;
+    public float cooldownTime;
+
+    // rotation
+    public float rotationSpeed = 2.0f;
+    public int rotationFactor = 3;
+
+    private CharacterController cc;
 
 	void Start () {
-        rcTime = rcTimeMax;
+        cc = GetComponent<CharacterController>();
+        cooldownTime = cooldownTimeMax;
     }
 	
 	void Update () {
-        // movement
-        float randomFactorX = transform.position.x + Random.Range(-moveFactor, moveFactor + 1) * moveSpeed * Time.deltaTime;
-        float randomFactorZ = transform.position.z + Random.Range(-moveFactor, moveFactor + 1) * moveSpeed * Time.deltaTime;
-        transform.position = new Vector3(randomFactorX, transform.position.y, randomFactorZ);
+        // rotation
+        float randomFactorY = Random.Range(-rotationFactor, rotationFactor + 1) * rotationSpeed;
+        cc.transform.Rotate(0, randomFactorY, 0);
 
-        // raycast
-        if (rcTime > 0)
-            rcTime -= Time.deltaTime;
-        else
+        if (cooldownTime <= 0)
         {
-            rcTime = rcTimeMax;
-            // shoot rc
-            RaycastHit hit;
-            Debug.DrawRay(transform.position, transform.forward * rcLength, Color.red);
-            if (Physics.Raycast(transform.position, transform.forward, out hit, rcLength))
-            {
-                Health health = hit.collider.gameObject.GetComponent<Health>();
-                if (health != null)
-                    health.LoseHealth(1f);
-            }
-            // Debug.Log("shoot!");
+            cooldownTime = cooldownTimeMax;
+            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         }
-	}
+        else
+            cooldownTime -= Time.deltaTime;
+    }
 }

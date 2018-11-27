@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class SpawnPlatformController : MonoBehaviour {
 
-    public float respawnTimeMax = 3.0f;
+    public float respawnTimeMax = 1.0f;
     private float respawnTime;
     public GameObject enemyPrefab;
     public Transform spawnPosition;
     public GameObject player;
+    public GameObject enemy;
 
 	// Use this for initialization
-	void Start () {
-        respawnTime = respawnTimeMax;
+	void Start ()
+    {
+        enemy = Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation);
     }
 	
 	// Update is called once per frame
@@ -20,14 +22,16 @@ public class SpawnPlatformController : MonoBehaviour {
         Health health = player.GetComponent<Health>();
         if (health && health.GetHealth() <= 0)
             return;
-        if (respawnTime > 0)
-            respawnTime -= Time.deltaTime;
-        else
+        if (!enemy.gameObject)
         {
-            respawnTime = respawnTimeMax;
-            // respawn mob
-            Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation);
+            if (respawnTime > 0)
+                respawnTime -= Time.deltaTime;
+            else
+            {
+                respawnTime = respawnTimeMax;
+                // respawn mob
+                enemy = Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation);
+            }
         }
-
     }
 }

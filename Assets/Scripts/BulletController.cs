@@ -26,21 +26,22 @@ public class BulletController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         if (Time.time > lifeTime + fireTime)
         {
-
             Destroy(this.gameObject);
-
         }
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Enemy"))
-            Destroy(collision.gameObject);
+        //Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Player2"))
+        {
+            Health health = collision.gameObject.GetComponent<Health>();
+            if (health != null)
+                health.LoseHealth(1f);
+        }
         Destroy(this.gameObject);
     }
 }
