@@ -1,6 +1,6 @@
 # vgd-2018-esercitazione-2-b
 
-## Estensione deadline Esercitazione Gruppo A
+## Estensione deadline Esercitazione Gruppo B
 
 Per chi non fosse riuscito a concludere l'esercitazione in laboratorio, diamo la possibilità di consegnare l'esercizio funzionante entro le 20:00, in modo da non interferire con l'esercitazione di LIP.
 
